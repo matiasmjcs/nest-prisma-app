@@ -35,6 +35,25 @@ export class GroupService {
     }
   }
 
+  async removeAppication(id: number, idApp: number) {
+    try {
+      return this.prisma.group.update({
+        where: {
+          id,
+        },
+        data: {
+          Applications: {
+            delete: {
+              id: idApp,
+            },
+          },
+        },
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async findAll() {
     try {
       return await this.prisma.group.findMany();

@@ -48,4 +48,12 @@ export class GroupController {
   remove(@Param('id') id: string) {
     return this.groupService.remove(+id);
   }
+
+  @Delete('app/:id')
+  removeapp(
+    @Body() addApplicationdto: { appid: number },
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    return this.groupService.removeAppication(id, addApplicationdto.appid);
+  }
 }

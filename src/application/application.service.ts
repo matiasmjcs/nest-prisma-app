@@ -9,7 +9,7 @@ export class ApplicationService {
   async create(createApplicationDto: CreateApplicationDto) {
     try {
       return this.prisma.application.create({
-        data: createApplicationDto,
+        data: { ...createApplicationDto },
       });
     } catch (error) {
       throw error;
