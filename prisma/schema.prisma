@@ -11,15 +11,18 @@ datasource db {
 }
 
 model Group {
-  id              Int           @id @default(autoincrement())
-  name            String
-  ApplicationPool Application[]
+  id           Int           @id @default(autoincrement())
+  name         String
+  description  String
+  createdAt    DateTime      @default(now())
+  Applications Application[]
 }
 
 model Application {
-  id          Int    @id @default(autoincrement())
-  name        String @unique
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
   description String
-  Group       Group? @relation(fields: [groupId], references: [id])
+  createdAt   DateTime @default(now())
+  Group       Group?   @relation(fields: [groupId], references: [id])
   groupId     Int?
 }
