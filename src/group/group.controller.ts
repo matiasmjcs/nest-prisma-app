@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { GroupService } from './group.service';
 import { CreateGroupDto } from './dto/create-group.dto';
 import { UpdateGroupDto } from './dto/update-group.dto';
@@ -10,6 +19,14 @@ export class GroupController {
   @Post()
   create(@Body() createGroupDto: CreateGroupDto) {
     return this.groupService.create(createGroupDto);
+  }
+
+  @Post(':id')
+  addApplication(
+    @Body() addApplicationdto: { appid: number },
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    return this.groupService.addAppication(id, addApplicationdto.appid);
   }
 
   @Get()
