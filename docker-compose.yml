@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  db-dev:
+    image: postgres:13
+
+    environment:
+      - POSTGRES_USER=${USER_DB}
+      - POSTGRES_PASSWORD=${PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - '5432:5432'
+    networks:
+      - nest-prisma-app
+  db-test:
+    image: postgres:13
+
+    environment:
+      - POSTGRES_USER=${USER_DB}
+      - POSTGRES_PASSWORD=${PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - '5433:5432'
+    networks:
+      - nest-prisma-app
+networks:
+  nest-prisma-app:
